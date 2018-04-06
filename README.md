@@ -2,4 +2,4 @@
 make
 
 # example
-./bin/bloxtool-go host get <hostname-here>
+./bin/bloxtool-go host get hostname-here
