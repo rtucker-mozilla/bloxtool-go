@@ -1,0 +1,15 @@
+[
+    {
+        "_ref": "record:host/asfasdf:foo.domain.com/Private",
+        "ipv4addrs": [
+            {
+                "_ref": "record:host_ipv4addr/asf:192.168.0.1/foo.domain.com/Private",
+                "configure_for_dhcp": false,
+                "host": "foo.domain.com",
+                "ipv4addr": "192.168.0.1"
+            }
+        ],
+        "name": "foo.domain.com",
+        "view": "Private"
+    }
+]

@@ -2,3 +2,4 @@ src/
 pkg/
 bin/
 .*.sw[op]
+bloxtool-go

@@ -13,5 +13,11 @@ go_get_deps:
 	$(GOGETTER) github.com/docopt/docopt-go 
 	$(GOGETTER) github.com/rtucker-mozilla/go-infoblox
 
+test:
+	$(GO) test ./tests/
+
+tests:
+	$(GO) test ./tests/
+
 clean:
 	rm -rf bin src/github.com src/bitbucket.org src/code.google.com src/golang.org src/gopkg.in
