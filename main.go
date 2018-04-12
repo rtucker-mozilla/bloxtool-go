@@ -39,7 +39,8 @@ func e(err error) {
 }
 func main() {
 	usage := `Usage:
-    bloxtool record:host get <hostname>`
+    bloxtool record:host get <hostname>
+    bloxtool record:host create <hostname> ipv4addrs <ipv4addrs> view <view> --mac`
 	parser := &docopt.Parser{
 		HelpHandler:  docopt.PrintHelpOnly,
 		OptionsFirst: true,
