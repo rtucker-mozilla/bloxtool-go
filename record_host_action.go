@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-func host_execute(action string, opts docopt.Opts, config Config) {
+func record_host_execute(action string, opts docopt.Opts, config Config) {
 	if action == "get" {
 		hostname, hostActionErr := opts.String("<hostname>")
 		if hostActionErr != nil {

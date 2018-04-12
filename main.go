@@ -38,9 +38,8 @@ func e(err error) {
 	}
 }
 func main() {
-	usage := `bloxtool.
-Usage:
-  bloxtool host get <hostname>`
+	usage := `Usage:
+    bloxtool record:host get <hostname>`
 	parser := &docopt.Parser{
 		HelpHandler:  docopt.PrintHelpOnly,
 		OptionsFirst: true,
@@ -55,8 +54,7 @@ Usage:
 		fmt.Println(err)
 		os.Exit(2)
 	}
-	if argv[0] == "host" {
-		host_execute(argv[1], opts, config)
+	if argv[0] == "record:host" {
+		record_host_execute(argv[1], opts, config)
 	}
-	//_ := infoblox.NewClient(config.infoblox_host, config.infoblox_username, config.infoblox_password, false, false)
 }
