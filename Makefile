@@ -13,10 +13,6 @@ go_get_deps:
 	$(GOGETTER) github.com/docopt/docopt-go 
 	$(GOGETTER) github.com/rtucker-mozilla/go-infoblox
 
-
-tests:
-	$(GO) test ./tests/
-
 test:
 	$(GO) test ./tests/
 

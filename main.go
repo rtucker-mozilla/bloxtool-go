@@ -37,6 +37,7 @@ func e(err error) {
 		fmt.Printf("Error: %v\n", err)
 	}
 }
+
 func main() {
 	usage := `Usage:
     bloxtool record:host get <hostname>
