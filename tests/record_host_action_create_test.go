@@ -6,7 +6,7 @@ import (
 	"testing"
 )
 
-func TestRecordHostFound(t *testing.T) {
+func TestRecordHostFound2(t *testing.T) {
 	teardown := setup()
 	defer teardown()
 	mux.HandleFunc("/wapi/v1.4.1/record:host", func(w http.ResponseWriter, r *http.Request) {
@@ -35,7 +35,7 @@ func TestRecordHostFound(t *testing.T) {
 
 }
 
-func TestRecordHostNotFound(t *testing.T) {
+func TestRecordHostNotFound2(t *testing.T) {
 	teardown := setup()
 	defer teardown()
 	mux.HandleFunc("/wapi/v1.4.1/record:host", func(w http.ResponseWriter, r *http.Request) {
