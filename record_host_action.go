@@ -21,12 +21,13 @@ func record_host_get(hostname string, config Config) {
 
 }
 
-func record_host_create(hostname string, ipv4addrs string, view string, config Config) {
+func record_host_create(hostname string, ipv4addrs string, configureForDHCP bool, mac string, view string, config Config) {
 	ib := getInfobloxClient(config)
 
 	addrs := []infoblox.HostIpv4Addr{
 		infoblox.HostIpv4Addr{
-			ConfigureForDHCP: false,
+			ConfigureForDHCP: configureForDHCP,
+			MAC:              mac,
 			Ipv4Addr:         ipv4addrs,
 		},
 	}
@@ -39,11 +40,11 @@ func record_host_create(hostname string, ipv4addrs string, view string, config C
 	}
 	resp, err := ib.CreateRecordHost(host)
 	if err != nil {
-		fmt.Println(err)
-		fmt.Println(resp)
+		fmt.Println("Error: ", err)
+		os.Exit(2)
 	} else {
-		fmt.Println(resp)
-
+		fmt.Println("SUCCESS:", resp)
+		os.Exit(0)
 	}
 
 }
@@ -58,6 +59,11 @@ func record_host_execute(action string, opts docopt.Opts, config Config) {
 	} else if action == "create" {
 		ipv4addrs, _ := opts.String("<ipv4addrs>")
 		view, _ := opts.String("<view>")
-		record_host_create(hostname, ipv4addrs, view, config)
+		configureForDHCPVal, macErr := opts["--configure-for-dhcp"].(bool)
+		mac, macErr := opts["--mac"].(string)
+		if macErr != false {
+			fmt.Println(macErr)
+		}
+		record_host_create(hostname, ipv4addrs, configureForDHCPVal, mac, view, config)
 	}
 }

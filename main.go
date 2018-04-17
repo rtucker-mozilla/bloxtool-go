@@ -41,13 +41,10 @@ func e(err error) {
 func main() {
 	usage := `Usage:
     bloxtool record:host get <hostname>
-    bloxtool record:host create <hostname> <ipv4addrs> <view>`
-	parser := &docopt.Parser{
-		HelpHandler:  docopt.PrintHelpOnly,
-		OptionsFirst: true,
-	}
+    bloxtool record:host create <hostname> <ipv4addrs> <view> [--mac=<mac>] [--configure-for-dhcp=<true>]`
+	opts, _ := docopt.ParseDoc(usage)
 	argv := os.Args[1:]
-	opts, err := parser.ParseArgs(usage, argv, "")
+	//opts, err := parser.ParseArgs(usage, argv, "")
 	// @TODO: add config file path option to bloxtool
 	usr, _ := user.Current()
 	configFilePath := fmt.Sprintf("%s/%s", usr.HomeDir, ".bloxtool.cfg")

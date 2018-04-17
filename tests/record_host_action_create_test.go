@@ -6,13 +6,13 @@ import (
 	"testing"
 )
 
-func TestRecordHostFound2(t *testing.T) {
+func TestCreateRecordHostWithoutDHCP(t *testing.T) {
 	teardown := setup()
 	defer teardown()
 	mux.HandleFunc("/wapi/v1.4.1/record:host", func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		fmt.Fprint(w, fixture("record_host/record_host_found.json"))
+		fmt.Fprint(w, fixture("record_host/record_host_created_success.json"))
 	})
 	hostname := "foo.domain.com"
 	hosts, hostFoundErr := client.FindRecordHost(hostname)
