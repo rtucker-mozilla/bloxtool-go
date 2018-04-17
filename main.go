@@ -56,7 +56,7 @@ func main() {
 	}
 	if argv[0] == "record:host" {
 		if len(argv) > 1 {
-			record_host_execute(argv[1], opts, config)
+			RecordHostExecute(argv[1], opts, config)
 		}
 	}
 }

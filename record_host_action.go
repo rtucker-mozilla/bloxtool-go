@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-func record_host_get(hostname string, view string, config Config) {
+func RecordHostGet(hostname string, view string, config Config) {
 	ib := getInfobloxClient(config)
 	hosts, hostFoundErr := ib.FindRecordHost(hostname, view)
 	if hostFoundErr != nil || len(hosts) == 0 {
@@ -21,7 +21,7 @@ func record_host_get(hostname string, view string, config Config) {
 
 }
 
-func record_host_delete(hostname string, view string, config Config) {
+func RecordHostDelete(hostname string, view string, config Config) {
 	ib := getInfobloxClient(config)
 	hosts, hostFoundErr := ib.FindRecordHost(hostname, view)
 	if hostFoundErr != nil {
@@ -70,20 +70,20 @@ func RecordHostCreate(hostname string, ipv4addrs string, configureForDHCP bool, 
 
 }
 
-func record_host_execute(action string, opts docopt.Opts, config Config) {
+func RecordHostExecute(action string, opts docopt.Opts, config Config) {
 	hostname, _ := opts.String("<hostname>")
 	view, _ := opts.String("<view>")
 	if len(hostname) == 0 {
 		fmt.Println("Hostname cannot be blank")
 	}
 	if action == "get" {
-		record_host_get(hostname, view, config)
+		RecordHostGet(hostname, view, config)
 	} else if action == "create" {
 		ipv4addrs, _ := opts.String("<ipv4addrs>")
 		configureForDHCPVal, _ := opts["--configure-for-dhcp"].(bool)
 		mac, _ := opts["--mac"].(string)
 		RecordHostCreate(hostname, ipv4addrs, configureForDHCPVal, mac, view, config)
 	} else if action == "delete" {
-		record_host_delete(hostname, view, config)
+		RecordHostDelete(hostname, view, config)
 	}
 }
