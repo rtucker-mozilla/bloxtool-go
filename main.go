@@ -40,8 +40,9 @@ func e(err error) {
 
 func main() {
 	usage := `Usage:
-    bloxtool record:host get <hostname>
-    bloxtool record:host create <hostname> <ipv4addrs> <view> [--mac=<mac>] [--configure-for-dhcp=<true>]`
+    bloxtool record:host get <hostname> <view>
+    bloxtool record:host create <hostname> <ipv4addrs> <view> [--mac=<mac>] [--configure-for-dhcp=<true>]
+    bloxtool record:host delete <hostname> <view>`
 	opts, _ := docopt.ParseDoc(usage)
 	argv := os.Args[1:]
 	//opts, err := parser.ParseArgs(usage, argv, "")

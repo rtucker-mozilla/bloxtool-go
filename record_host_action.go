@@ -7,9 +7,9 @@ import (
 	"os"
 )
 
-func record_host_get(hostname string, config Config) {
+func record_host_get(hostname string, view string, config Config) {
 	ib := getInfobloxClient(config)
-	hosts, hostFoundErr := ib.FindRecordHost(hostname)
+	hosts, hostFoundErr := ib.FindRecordHost(hostname, view)
 	if hostFoundErr != nil || len(hosts) == 0 {
 		fmt.Println("Host Not Found")
 		os.Exit(2)
@@ -21,7 +21,28 @@ func record_host_get(hostname string, config Config) {
 
 }
 
-func record_host_create(hostname string, ipv4addrs string, configureForDHCP bool, mac string, view string, config Config) {
+func record_host_delete(hostname string, view string, config Config) {
+	ib := getInfobloxClient(config)
+	hosts, hostFoundErr := ib.FindRecordHost(hostname, view)
+	if hostFoundErr != nil {
+		fmt.Println(hostFoundErr)
+	}
+	if len(hosts) == 0 {
+		fmt.Printf("Error: Unable to find host %s in view: %s", hostname, view)
+		os.Exit(2)
+	}
+
+	ref := hosts[0].Ref
+	deleted, deletedErr := ib.RecordHost().Delete(ref)
+	if deletedErr != nil {
+		fmt.Println("Error:", deletedErr)
+		os.Exit(2)
+	}
+
+	fmt.Println("Success:", deleted)
+
+}
+func RecordHostCreate(hostname string, ipv4addrs string, configureForDHCP bool, mac string, view string, config Config) {
 	ib := getInfobloxClient(config)
 
 	addrs := []infoblox.HostIpv4Addr{
@@ -43,7 +64,7 @@ func record_host_create(hostname string, ipv4addrs string, configureForDHCP bool
 		fmt.Println("Error: ", err)
 		os.Exit(2)
 	} else {
-		fmt.Println("SUCCESS:", resp)
+		fmt.Println("Success:", resp)
 		os.Exit(0)
 	}
 
@@ -51,19 +72,18 @@ func record_host_create(hostname string, ipv4addrs string, configureForDHCP bool
 
 func record_host_execute(action string, opts docopt.Opts, config Config) {
 	hostname, _ := opts.String("<hostname>")
+	view, _ := opts.String("<view>")
 	if len(hostname) == 0 {
 		fmt.Println("Hostname cannot be blank")
 	}
 	if action == "get" {
-		record_host_get(hostname, config)
+		record_host_get(hostname, view, config)
 	} else if action == "create" {
 		ipv4addrs, _ := opts.String("<ipv4addrs>")
-		view, _ := opts.String("<view>")
-		configureForDHCPVal, macErr := opts["--configure-for-dhcp"].(bool)
-		mac, macErr := opts["--mac"].(string)
-		if macErr != false {
-			fmt.Println(macErr)
-		}
-		record_host_create(hostname, ipv4addrs, configureForDHCPVal, mac, view, config)
+		configureForDHCPVal, _ := opts["--configure-for-dhcp"].(bool)
+		mac, _ := opts["--mac"].(string)
+		RecordHostCreate(hostname, ipv4addrs, configureForDHCPVal, mac, view, config)
+	} else if action == "delete" {
+		record_host_delete(hostname, view, config)
 	}
 }
