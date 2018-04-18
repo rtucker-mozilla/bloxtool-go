@@ -4,10 +4,10 @@ make
 # Testing
 make test
 
-# example
+# example  
 ./bin/bloxtool-go host get hostname-here
 
-#Usage
+# Usage  
   Usage:  
     bloxtool record:host get <hostname> <view>  
     bloxtool record:host create <hostname> <ipv4addrs> <view> [--mac=<mac>] [--configure-for-dhcp=<true>]  
