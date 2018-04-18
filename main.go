@@ -45,6 +45,7 @@ func main() {
     bloxtool record:host delete <hostname> <view>
     bloxtool record:cname get <alias> <view>
     bloxtool record:cname create <alias> <cname> <view>
+    bloxtool record:cname update <alias> <cname> <view>
     bloxtool record:cname delete <alias> <view>`
 	opts, _ := docopt.ParseDoc(usage)
 	argv := os.Args[1:]

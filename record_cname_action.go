@@ -40,6 +40,25 @@ func RecordCnameDelete(alias string, view string, config Config) {
 
 }
 
+func RecordCnameUpdate(alias string, cname string, view string, config Config) {
+	ib := getInfobloxClient(config)
+
+	cnameObj := infoblox.RecordCnameObject{
+		Name:      alias,
+		Canonical: cname,
+		View:      view,
+	}
+	resp, err := ib.UpdateRecordCname(cnameObj)
+	if err != nil {
+		fmt.Println("Error: ", err)
+		os.Exit(2)
+	} else {
+		fmt.Println("Success:", resp)
+		os.Exit(0)
+	}
+
+}
+
 func RecordCnameCreate(alias string, cname string, view string, config Config) {
 	ib := getInfobloxClient(config)
 
@@ -70,6 +89,9 @@ func RecordCnameExecute(action string, opts docopt.Opts, config Config) {
 	} else if action == "create" {
 		cname, _ := opts.String("<cname>")
 		RecordCnameCreate(alias, cname, view, config)
+	} else if action == "update" {
+		cname, _ := opts.String("<cname>")
+		RecordCnameUpdate(alias, cname, view, config)
 	} else if action == "delete" {
 		RecordCnameDelete(alias, view, config)
 	}
