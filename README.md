@@ -8,11 +8,11 @@ make test
 ./bin/bloxtool-go host get hostname-here
 
 # Usage  
-  Usage:  
-    bloxtool record:host get \<hostname\> <view>  
-    bloxtool record:host create \<hostname\> \<ipv4addrs\> \<view\> [--mac=\<mac\>] [--configure-for-dhcp=\<true\>]  
-    bloxtool record:host delete \<hostname\> \<view\>  
-    bloxtool record:cname get \<alias\> \<view\>  
-    bloxtool record:cname create \<alias\> \<cname\> \<view\>  
-    bloxtool record:cname update \<alias\> \<cname\> \<view\>  
-    bloxtool record:cname delete \<alias\> \<view\>  
+Usage:  
+&nbsp;&nbsp;&nbsp;&nbsp;bloxtool record:host get \<hostname\> <view>  
+&nbsp;&nbsp;&nbsp;&nbsp;bloxtool record:host create \<hostname\> \<ipv4addrs\> \<view\> [--mac=\<mac\>] [--configure-for-dhcp=\<true\>]  
+&nbsp;&nbsp;&nbsp;&nbsp;bloxtool record:host delete \<hostname\> \<view\>  
+&nbsp;&nbsp;&nbsp;&nbsp;bloxtool record:cname get \<alias\> \<view\>  
+&nbsp;&nbsp;&nbsp;&nbsp;bloxtool record:cname create \<alias\> \<cname\> \<view\>  
+&nbsp;&nbsp;&nbsp;&nbsp;bloxtool record:cname update \<alias\> \<cname\> \<view\>  
+&nbsp;&nbsp;&nbsp;&nbsp;bloxtool record:cname delete \<alias\> \<view\>  
