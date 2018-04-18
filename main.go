@@ -40,13 +40,13 @@ func e(err error) {
 
 func main() {
 	usage := `Usage:
-    bloxtool record:host get <hostname> <view>
-    bloxtool record:host create <hostname> <ipv4addrs> <view> [--mac=<mac>] [--configure-for-dhcp=<true>]
-    bloxtool record:host delete <hostname> <view>
-    bloxtool record:cname get <alias> <view>
-    bloxtool record:cname create <alias> <cname> <view>
-    bloxtool record:cname update <alias> <cname> <view>
-    bloxtool record:cname delete <alias> <view>`
+    bloxtool-go record:host get <hostname> <view>
+    bloxtool-go record:host create <hostname> <ipv4addrs> <view> [--mac=<mac>] [--configure-for-dhcp=<true>]
+    bloxtool-go record:host delete <hostname> <view>
+    bloxtool-go record:cname get <alias> <view>
+    bloxtool-go record:cname create <alias> <cname> <view>
+    bloxtool-go record:cname update <alias> <cname> <view>
+    bloxtool-go record:cname delete <alias> <view>`
 	opts, _ := docopt.ParseDoc(usage)
 	argv := os.Args[1:]
 	//opts, err := parser.ParseArgs(usage, argv, "")
