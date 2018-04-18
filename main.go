@@ -42,7 +42,10 @@ func main() {
 	usage := `Usage:
     bloxtool record:host get <hostname> <view>
     bloxtool record:host create <hostname> <ipv4addrs> <view> [--mac=<mac>] [--configure-for-dhcp=<true>]
-    bloxtool record:host delete <hostname> <view>`
+    bloxtool record:host delete <hostname> <view>
+    bloxtool record:cname get <alias> <view>
+    bloxtool record:cname create <alias> <cname> <view>
+    bloxtool record:cname delete <alias> <view>`
 	opts, _ := docopt.ParseDoc(usage)
 	argv := os.Args[1:]
 	//opts, err := parser.ParseArgs(usage, argv, "")
@@ -57,6 +60,10 @@ func main() {
 	if argv[0] == "record:host" {
 		if len(argv) > 1 {
 			RecordHostExecute(argv[1], opts, config)
+		}
+	} else if argv[0] == "record:cname" {
+		if len(argv) > 1 {
+			RecordCnameExecute(argv[1], opts, config)
 		}
 	}
 }
