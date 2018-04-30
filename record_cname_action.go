@@ -11,7 +11,7 @@ func RecordCnameGet(alias string, view string, config Config) {
 	ib := getInfobloxClient(config)
 	cname, cnameFoundErr := ib.FindRecordCname(alias, view)
 	if len(cname) == 0 || cnameFoundErr != nil {
-		fmt.Println("cname Not Found")
+		fmt.Println("CNAME Not Found")
 		os.Exit(2)
 	} else {
 		for _, cname := range cname {

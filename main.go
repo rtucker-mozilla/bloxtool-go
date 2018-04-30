@@ -46,7 +46,9 @@ func main() {
     bloxtool-go record:cname get <alias> <view>
     bloxtool-go record:cname create <alias> <cname> <view>
     bloxtool-go record:cname update <alias> <cname> <view>
-    bloxtool-go record:cname delete <alias> <view>`
+    bloxtool-go record:cname delete <alias> <view>
+    bloxtool-go record:cname search <term>
+    bloxtool-go search <term> [--objtype=<objtype>]`
 	opts, _ := docopt.ParseDoc(usage)
 	argv := os.Args[1:]
 	//opts, err := parser.ParseArgs(usage, argv, "")
@@ -65,6 +67,10 @@ func main() {
 	} else if argv[0] == "record:cname" {
 		if len(argv) > 1 {
 			RecordCnameExecute(argv[1], opts, config)
+		}
+	} else if argv[0] == "search" {
+		if len(argv) > 1 {
+			GlobalSearchExecute(argv[1], opts, config)
 		}
 	}
 }

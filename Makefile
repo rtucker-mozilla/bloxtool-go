@@ -6,7 +6,7 @@ GOGETTER := GOPATH="$(shell pwd)" GOOS=$(OS) GOARCH=$(ARCH) go get -u
 all: clean go_get_deps bloxtool-go
 
 bloxtool-go:
-	$(GO) build $(GOOPTS) -o bin/bloxtool-go main.go common.go get_config.go record_host_action.go record_cname_action.go
+	$(GO) build $(GOOPTS) -o bin/bloxtool-go main.go common.go get_config.go record_host_action.go record_cname_action.go global_search_action.go
 
 go_get_deps:
 	$(GOGETTER) gopkg.in/ini.v1
