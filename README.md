@@ -16,3 +16,10 @@ Usage:
 &nbsp;&nbsp;&nbsp;&nbsp;bloxtool-go record:cname create \<alias\> \<cname\> \<view\>  
 &nbsp;&nbsp;&nbsp;&nbsp;bloxtool-go record:cname update \<alias\> \<cname\> \<view\>  
 &nbsp;&nbsp;&nbsp;&nbsp;bloxtool-go record:cname delete \<alias\> \<view\>  
+
+# config at ~/.bloxtool.cfg  
+[InfoBlox]  
+ssl_verify = true  
+host = https://infoblox.domain.com  
+username = username  
+password = password  
