@@ -15,7 +15,7 @@ func TestCreateRecordHostWithoutDHCP(t *testing.T) {
 		fmt.Fprint(w, fixture("record_host/record_host_created_success.json"))
 	})
 	hostname := "foo.domain.com"
-	hosts, hostFoundErr := client.FindRecordHost(hostname)
+	hosts, hostFoundErr := client.FindRecordHost(hostname, "Private")
 	if hostFoundErr != nil {
 		t.Error("Host should have been found")
 	}
@@ -34,7 +34,6 @@ func TestCreateRecordHostWithoutDHCP(t *testing.T) {
 	}
 
 }
-
 func TestRecordHostNotFound2(t *testing.T) {
 	teardown := setup()
 	defer teardown()
@@ -44,7 +43,7 @@ func TestRecordHostNotFound2(t *testing.T) {
 		fmt.Fprint(w, fixture("record_host/record_host_not_found.json"))
 	})
 	hostname := "foo.domain.com"
-	hosts, hostFoundErr := client.FindRecordHost(hostname)
+	hosts, hostFoundErr := client.FindRecordHost(hostname, "Public")
 	if hostFoundErr != nil {
 		t.Error("hostFoundErr should be nil")
 	}

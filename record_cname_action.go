@@ -18,12 +18,13 @@ func RecordCnameGet(alias string, view string, config Config) {
 			fmt.Printf("cnamename: %s ref: %s", cname.Name, cname.Ref)
 		}
 	}
-
 }
 
 func RecordCnameDelete(alias string, view string, config Config) {
 	ib := getInfobloxClient(config)
+	
 	cname, cnameFoundErr := ib.FindRecordCname(alias, view)
+
 	if len(cname) == 0 || cnameFoundErr != nil {
 		fmt.Println("cname Not Found")
 		os.Exit(2)

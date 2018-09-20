@@ -15,7 +15,7 @@ func TestRecordHostFound(t *testing.T) {
 		fmt.Fprint(w, fixture("record_host/record_host_found.json"))
 	})
 	hostname := "foo.domain.com"
-	hosts, hostFoundErr := client.FindRecordHost(hostname)
+	hosts, hostFoundErr := client.FindRecordHost(hostname, "Public")
 	if hostFoundErr != nil {
 		t.Error("Host should have been found")
 	}
@@ -44,7 +44,7 @@ func TestRecordHostNotFound(t *testing.T) {
 		fmt.Fprint(w, fixture("record_host/record_host_not_found.json"))
 	})
 	hostname := "foo.domain.com"
-	hosts, hostFoundErr := client.FindRecordHost(hostname)
+	hosts, hostFoundErr := client.FindRecordHost(hostname, "Public")
 	if hostFoundErr != nil {
 		t.Error("hostFoundErr should be nil")
 	}
